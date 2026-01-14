@@ -15,9 +15,9 @@
  */
 export interface Game {
   /**
-   * Unique identifier for the game (UUID string)
+   * Unique identifier for the game (from the database)
    */
-  id: string;
+  id: number;
 
   /**
    * The name of the game (e.g., "Satisfactory", "Minecraft")
