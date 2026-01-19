@@ -11,39 +11,54 @@
 // ============================================
 
 /**
- * Primary color - Dark purple used for main UI elements like the navbar
+ * Primary - Dark purple used for main UI elements like the navbar
  */
-$primary-color: #35155d;
+$primary: #35155d;
 
 /**
- * Primary color accent - Slightly lighter purple for hover states and highlights
+ * Primary accent - Slightly lighter purple for hover states and highlights
  */
-$primary-color-accent: #37185e;
+$primary-accent: #37185e;
 
 /**
- * Secondary color - Medium purple used for cards and content areas
+ * Secondary - Medium purple used for cards and content areas
  */
-$secondary-color: #4d1e87;
+$secondary: #4d1e87;
 
 /**
- * Secondary color accent - Darker purple for borders and subtle highlights
+ * Secondary accent - Darker purple for borders and subtle highlights
  */
-$secondary-color-accent: #3d166d;
+$secondary-accent: #3d166d;
 
 /**
- * Grey color - Dark grey used for footer and neutral elements
+ * Grey - Dark grey used for footer and neutral elements
  */
-$grey-color: #252525;
+$grey: #252525;
 
 /**
- * Blue color - Dark blue used in the gradient background
+ * Blue - Dark blue used in the gradient background
  */
-$blue-color: #0e2954;
+$blue: #0e2954;
 
 /**
- * White color - Pure white for text and icons
+ * White - Pure white for text and icons
  */
-$white-color: #fff;
+$white: #fff;
+
+/**
+ * Off-white - Slightly muted white for icons and subtle elements
+ */
+$off-white: #fafafa;
+
+/**
+ * Black - Pure black for dark elements
+ */
+$black: #000000;
+
+/**
+ * Error - Red used for error messages
+ */
+$error: #ff6b6b;
 
 // ============================================
 // GLOBAL FONTS

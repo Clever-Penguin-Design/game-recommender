@@ -40,6 +40,11 @@ export interface Game {
   review_score: number;
 
   /**
+   * URL to the game's cover image
+   */
+  cover_url?: string;
+
+  /**
    * Optional: Information about supported platforms
    * This will be expanded when we integrate platform data
    */

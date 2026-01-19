@@ -2,18 +2,7 @@
   Game Card Component
 
   This component displays information about a single game.
-  It shows:
-  - Game cover image
-  - Title and ID
-  - Action icons (share, add to list, more info)
-  - Number of players
-  - Review score
-  - Short description
-  - Platform availability icons
-
-  Props:
-  - game: The game object containing all the game's information
--->
+  -->
 
 <script lang="ts">
   /**
@@ -24,30 +13,11 @@
   import { faPlus, faCircleInfo, faChartSimple } from '@fortawesome/free-solid-svg-icons';
   import { faSteam } from '@fortawesome/free-brands-svg-icons';
 
-  /**
-   * Import the Game type to ensure type safety.
-   */
   import type { Game } from '$lib/types/game';
-
-  /**
-   * Props for this component.
-   *
-   * In Svelte 5, we use $props() to declare props that can be passed from a parent component.
-   * The parent component will pass game data like this: <Card game={gameObject} />
-   */
+  
   let { game }: { game: Game } = $props();
 
-  /**
-   * Placeholder image for games.
-   * In the future, this should be replaced with the actual game cover image.
-   * You could get this from:
-   * - Your database
-   * - The IGDB API
-   * - A CDN with game images
-   */
-  const placeholderImage =
-    'https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80';
-</script>
+  </script>
 
 <!--
   Main card container.
@@ -58,7 +28,7 @@
     Game cover image.
     Alt text describes the image for accessibility and SEO.
   -->
-  <img src={placeholderImage} alt="Cover art for {game.title}" />
+  <img src={game.cover_url} alt="Cover art for {game.title}" />
 
   <!--
     Content section holds all the text and icons.
@@ -116,20 +86,13 @@
       </div>
     </div>
 
-    <!--
-      Game description.
-      Currently shows placeholder text - should display game.description.
-      You might want to truncate long descriptions with ellipsis (...).
-    -->
     <div class="description">
-      {game.description ||
-        'Satisfactory is a first person open-world factory building game with a dash of exploration and combat. Play...'}
+      {game.description}
     </div>
 
     <!--
       Platform availability icons.
       Shows which platforms the game is available on (Steam, PlayStation, etc.).
-      Currently only shows Steam - should be dynamic based on game.platforms data.
     -->
     <div class="platforms">
       <ul>
@@ -137,12 +100,6 @@
           <!-- Steam icon - should conditionally show based on game.platforms.steam -->
           <Fa icon={faSteam} />
         </li>
-        <!--
-          In the future, you would add more platform icons here based on the data:
-          {#if game.platforms?.playstation}
-            <li><Fa icon={faPlaystation} /></li>
-          {/if}
-        -->
       </ul>
     </div>
   </div>
@@ -171,7 +128,7 @@
    * Displays game image on the left and content on the right.
    */
   .card {
-    background-color: variables.$secondary-color;
+    background-color: variables.$secondary;
     height: 30%;
     width: 90%;
     display: flex; /* Arrange image and content side by side */
@@ -199,7 +156,7 @@
     display: flex;
     flex-direction: column; /* Stack sections vertically */
     justify-content: space-between; /* Distribute space evenly */
-    background-color: variables.$secondary-color;
+    background-color: variables.$secondary;
     border: none;
   }
 
@@ -240,7 +197,7 @@
    * Aligned to the right side.
    */
   .platforms {
-    background-color: variables.$secondary-color;
+    background-color: variables.$secondary;
     border: none;
     display: flex;
     justify-content: end; /* Align to right */
@@ -256,7 +213,7 @@
   .info {
     display: flex;
     justify-content: start; /* Align to left */
-    background-color: variables.$secondary-color;
+    background-color: variables.$secondary;
     border: none;
     font-size: 1rem;
     padding-left: 1rem;
@@ -270,7 +227,7 @@
     display: flex;
     align-items: center; /* Vertically center icon and text */
     border: none;
-    background-color: variables.$secondary-color;
+    background-color: variables.$secondary;
     gap: 0.5rem; /* Space between icon and text */
     padding-right: 2.5rem; /* Space before review score */
     justify-content: start;
@@ -284,7 +241,7 @@
     display: flex;
     align-items: center; /* Vertically center icon and text */
     height: 30px;
-    background-color: variables.$secondary-color;
+    background-color: variables.$secondary;
     border: none;
     gap: 0.5rem; /* Space between icon and text */
     width: 300px;
@@ -296,7 +253,7 @@
    * Limited width to prevent overly long lines.
    */
   .description {
-    background-color: variables.$secondary-color;
+    background-color: variables.$secondary;
     border: none;
     font-size: 1rem;
     padding-left: 1rem;

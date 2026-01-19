@@ -32,12 +32,6 @@
   import Avatar from './Avatar.svelte';
 
   /**
-   * Import the logo image.
-   * In SvelteKit, we use the $lib alias to reference the lib directory.
-   */
-  import logo from '$lib/assets/img/logo.jpg';
-
-  /**
    * Navigation menu items.
    * Each item has a label, an icon, and a route path.
    * This makes it easy to add or modify menu items in the future.
@@ -60,7 +54,7 @@
     Alt text is important for accessibility - screen readers will read this
     description to users who can't see the image.
   -->
-  <img src={logo} alt="Game Recommender logo" />
+  <img src="/img/logo.jpg" alt="Game Recommender logo" />
 
   <!--
     Navigation menu list.
@@ -120,7 +114,7 @@
    * This is a global class that applies to all icons in this component.
    */
   :global(.font-awesome-icon) {
-    color: variables.$white-color;
+    color: variables.$white;
   }
 
   /**
@@ -130,12 +124,12 @@
    * It uses flexbox to arrange its children (logo, menu, avatar) vertically.
    */
   nav {
-    background-color: variables.$primary-color-accent;
+    background-color: variables.$primary-accent;
     padding-top: 4rem; /* Space at the top for breathing room */
     display: flex;
     flex-direction: column; /* Stack children vertically */
     align-items: center; /* Center children horizontally */
-    border-right: 1px solid variables.$secondary-color-accent; /* Separates nav from main content */
+    border-right: 1px solid variables.$secondary-accent; /* Separates nav from main content */
     position: fixed; /* Stays in place when scrolling */
     height: 100vh; /* Full viewport height */
     width: 15%; /* Takes up 15% of screen width */
@@ -171,7 +165,7 @@
      * Changes background color and cursor to indicate interactivity.
      */
     &:hover {
-      background-color: variables.$secondary-color;
+      background-color: variables.$secondary;
       cursor: pointer; /* Shows hand cursor to indicate it's clickable */
     }
   }

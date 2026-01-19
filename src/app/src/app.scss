@@ -49,11 +49,9 @@ body {
    * Create a gradient background that transitions from our primary purple
    * color in the top-left to our blue color in the bottom-right.
    */
-  background-image: linear-gradient(
-    to bottom right,
-    variables.$primary-color 50%,
-    variables.$blue-color
-  );
+  background-image: linear-gradient(to bottom right,
+      variables.$primary 50%,
+      variables.$blue );
 
   /**
    * These properties ensure the gradient covers the entire viewport
