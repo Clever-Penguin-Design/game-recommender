@@ -68,7 +68,7 @@
     gap: 4%; /* Space between icon and username */
     align-items: center; /* Vertically center icon and text */
     justify-content: center; /* Horizontally center content */
-    background-color: variables.$primary-color;
+    background-color: variables.$primary;
     border-top: 1px solid black; /* Separates from nav items above */
     width: 100%;
     height: 10%; /* Takes up 10% of the nav bar height */

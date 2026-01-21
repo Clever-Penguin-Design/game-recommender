@@ -8,9 +8,8 @@
  * 3. Easily update the API endpoint if it changes
  */
 
-import { PUBLIC_API_URL } from '$env/static/public';
-import type { GamesApiResponse } from '$lib/types/game';
-
+import { env } from "$env/dynamic/public";
+import type { GamesApiResponse } from "$lib/types/game";
 /**
  * The base URL for our backend API.
  *
@@ -23,49 +22,31 @@ import type { GamesApiResponse } from '$lib/types/game';
  * The environment variable is set in:
  * - Local: .env file in src/app/
  * - Docker: compose.yaml file
+ *
+ * If the env var is not defined, we use the default FastAPI localhost port.
  */
-const BASE_URL = `${PUBLIC_API_URL}/api/games`;
+const BASE_URL = `${env.PUBLIC_API_URL ?? "http://localhost:8000"}/api/games`;
 
-/**
- * Fetches a page of games from the backend API.
- *
- * This function makes an HTTP request to our FastAPI backend
- * and returns the game data for the requested page.
- *
- * @param pageNumber - The page number to fetch (starts at 1)
- * @returns A promise that resolves to the games data
- * @throws Error if the API request fails
- *
- * @example
- * ```typescript
- * // Fetch the first page of games
- * const games = await fetchGames(1);
- * console.log(games.data); // Array of game objects
- * ```
- */
-export async function fetchGames(pageNumber: number): Promise<GamesApiResponse> {
+export async function fetchGames(
+  pageNumber: number,
+): Promise<GamesApiResponse> {
   try {
-    // Make the HTTP GET request to the API
-    // The ?page_number= query parameter tells the API which page we want
     const response = await fetch(`${BASE_URL}?page_number=${pageNumber}`);
 
     // Check if the request was successful
-    // HTTP status codes in the 200-299 range indicate success
     if (!response.ok) {
       throw new Error(`HTTP error: The status is ${response.status}`);
     }
 
-    // Parse the JSON response from the API
-    // This converts the text response into a JavaScript object
     const data: GamesApiResponse = await response.json();
 
     return data;
   } catch (error) {
     // If anything goes wrong (network error, bad response, etc.),
     // we throw a new error with a helpful message
-    console.error('Error fetching games:', error);
+    console.error("Error fetching games:", error);
     throw new Error(
-      `Failed to fetch games: ${error instanceof Error ? error.message : 'Unknown error'}`
+      `Failed to fetch games: ${error instanceof Error ? error.message : "Unknown error"}`,
     );
   }
 }

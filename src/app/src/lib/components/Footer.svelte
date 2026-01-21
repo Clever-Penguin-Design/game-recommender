@@ -56,7 +56,7 @@
     padding: 0 1.25rem; /* Horizontal padding (converted from px-5) */
     align-items: center; /* Vertically center the text */
     border-top: 0.1em solid white; /* Top border to separate from content */
-    background-color: variables.$grey-color;
+    background-color: variables.$grey;
     margin-top: auto; /* Pushes footer to bottom */
   }
 

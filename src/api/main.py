@@ -62,6 +62,7 @@ def index(page_number: int = 10):
             "review_score": 97,
             "platforms": {"nintendo_switch": True, "wii_u": True},
             "player_count": 1,
+            "cover_url": "https://media.rawg.io/media/games/cc1/cc196a5ad763955d6532cdba236f730c.jpg",
         },
         {
             "id": str(uuid4()),
@@ -71,6 +72,7 @@ def index(page_number: int = 10):
             "review_score": 96,
             "platforms": {"pc": True, "ps5": True, "ps4": True, "xbox_one": True},
             "player_count": 4,
+            "cover_url": "https://media.rawg.io/media/games/b29/b294fdd866dcdb643e7bab370a552855.jpg",
         },
         {
             "id": str(uuid4()),
@@ -80,6 +82,7 @@ def index(page_number: int = 10):
             "review_score": 97,
             "platforms": {"pc": True, "ps4": True, "xbox_one": True},
             "player_count": 32,
+            "cover_url": "https://media.rawg.io/media/games/511/5118aff5091cb3efec399c808f8c598f.jpg",
         },
         {
             "id": str(uuid4()),
@@ -89,6 +92,7 @@ def index(page_number: int = 10):
             "review_score": 94,
             "platforms": {"ps5": True, "ps4": True, "pc": True},
             "player_count": 1,
+            "cover_url": "https://media.rawg.io/media/screenshots/3c4/3c4c51b66741363d83b56ce66b1240ec.jpg",
         },
         {
             "id": str(uuid4()),
@@ -103,6 +107,7 @@ def index(page_number: int = 10):
                 "xbox_one": True,
             },
             "player_count": 1,
+            "cover_url": "https://media.rawg.io/media/games/1f4/1f47a270b8f241e4676b14d39ec620f7.jpg",
         },
         {
             "id": str(uuid4()),
@@ -118,6 +123,7 @@ def index(page_number: int = 10):
                 "mobile": True,
             },
             "player_count": 8,
+            "cover_url": "https://media.rawg.io/media/games/b4e/b4e4c73d5aa4ec66bbf75375c4847a2b.jpg",
         },
         {
             "id": str(uuid4()),
@@ -133,6 +139,7 @@ def index(page_number: int = 10):
                 "mac": True,
             },
             "player_count": 2,
+            "cover_url": "https://media.rawg.io/media/games/2ba/2bac0e87cf45e5b508f227d281c9252a.jpg",
         },
         {
             "id": str(uuid4()),
@@ -147,6 +154,7 @@ def index(page_number: int = 10):
                 "xbox_one": True,
             },
             "player_count": 1,
+            "cover_url": "https://media.rawg.io/media/games/4cf/4cfc6b7f1850590a4634b08bfab308ab.jpg",
         },
         {
             "id": str(uuid4()),
@@ -161,6 +169,7 @@ def index(page_number: int = 10):
                 "xbox_one": True,
             },
             "player_count": 1,
+            "cover_url": "https://media.rawg.io/media/games/594/59487800889ebac294c7c2c070d02356.jpg",
         },
         {
             "id": str(uuid4()),
@@ -176,6 +185,7 @@ def index(page_number: int = 10):
                 "mobile": True,
             },
             "player_count": 4,
+            "cover_url": "https://media.rawg.io/media/games/713/713269608dc8f2f40f5a670a14b2de94.jpg",
         },
         {
             "id": str(uuid4()),
@@ -185,6 +195,7 @@ def index(page_number: int = 10):
             "review_score": 89,
             "platforms": {"pc": True, "ps4": True, "xbox_one": True},
             "player_count": 4,
+            "cover_url": "https://media.rawg.io/media/games/da1/da1b267764d77221f07a4386b6548e5a.jpg",
         },
         {
             "id": str(uuid4()),
@@ -199,6 +210,7 @@ def index(page_number: int = 10):
                 "nintendo_switch": True,
             },
             "player_count": 1,
+            "cover_url": "https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg",
         },
         {
             "id": str(uuid4()),
@@ -208,6 +220,7 @@ def index(page_number: int = 10):
             "review_score": 96,
             "platforms": {"pc": True, "ps5": True, "xbox_one_x": True},
             "player_count": 4,
+            "cover_url": "https://media.rawg.io/media/games/699/69907ecf13f172e9e144069769c3be73.jpg",
         },
         {
             "id": str(uuid4()),
@@ -217,6 +230,7 @@ def index(page_number: int = 10):
             "review_score": 97,
             "platforms": {"nintendo_switch": True},
             "player_count": 2,
+            "cover_url": "https://media.rawg.io/media/games/267/267bd0dbc496f52692487d07d014c061.jpg",
         },
         {
             "id": str(uuid4()),
@@ -231,6 +245,7 @@ def index(page_number: int = 10):
                 "nintendo_switch": True,
             },
             "player_count": 1,
+            "cover_url": "https://media.rawg.io/media/games/0af/0afe9e8ace196123d8c7cf22172cec63.jpg",
         },
     ]
 
