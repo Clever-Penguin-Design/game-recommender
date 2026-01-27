@@ -8,6 +8,7 @@
 <script lang="ts">
   import '../app.scss';
   import Nav from '$lib/components/Nav.svelte';
+  import FilterBar from '$lib/components/FilterBar.svelte'; // Import the new filter bar
   import favicon from '$lib/assets/favicon.svg';
 
   let { children } = $props();
@@ -19,6 +20,9 @@
 
 <div class="app-container">
   <Nav />
+  
+  <FilterBar />
+
   <main>
     {@render children()}
   </main>
@@ -26,12 +30,19 @@
 
 <style>
   .app-container {
-    display: flex;
-    min-height: 100vh;
+    display: block; 
+    width: 100%;
   }
 
   main {
-    flex: 1;
-    overflow-y: auto;
+    margin-top: 130px; /* Accounts for both Nav and FilterBar height */
+    padding: 20px;
+    
+    /* Center the content horizontally */
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    width: 100%;
+    box-sizing: border-box;
   }
 </style>

@@ -1,178 +1,160 @@
-<!--
-  Navigation Sidebar Component
-
-  This component displays the main navigation sidebar on the left side of the screen.
-  It contains:
-  - The app logo at the top
-  - Navigation menu items (Home, Search, My Games, Wishlist)
-  - User avatar at the bottom
-
-  In SvelteKit, we'll use proper routing for each menu item so they
-  can navigate to different pages.
--->
-
 <script lang="ts">
-  /**
-   * Import FontAwesome icons.
-   * We only import the specific icons we need to keep the bundle size small.
-   *
-   * Fa is the Svelte component for rendering FontAwesome icons.
-   */
-  import Fa from 'svelte-fa';
-  import {
-    faHouse,
-    faMagnifyingGlass,
-    faGamepad,
-    faPen
-  } from '@fortawesome/free-solid-svg-icons';
+  import Fa from "svelte-fa";
+  import { faHouse, faGamepad, faPen, faMagnifyingGlass, faXmark } from "@fortawesome/free-solid-svg-icons";
+  import Avatar from "./Avatar.svelte";
+  import logo from "$lib/assets/img/logo.jpg";
 
-  /**
-   * Import the Avatar component to display at the bottom of the nav.
-   */
-  import Avatar from './Avatar.svelte';
+  let searchQuery = ""; 
 
-  /**
-   * Import the logo image.
-   * In SvelteKit, we use the $lib alias to reference the lib directory.
-   */
-  import logo from '$lib/assets/img/logo.jpg';
-
-  /**
-   * Navigation menu items.
-   * Each item has a label, an icon, and a route path.
-   * This makes it easy to add or modify menu items in the future.
-   */
   const navItems = [
-    { label: 'Home', icon: faHouse, path: '/' },
-    { label: 'Search', icon: faMagnifyingGlass, path: '/search' },
-    { label: 'My Games', icon: faGamepad, path: '/my-games' },
-    { label: 'Wishlist', icon: faPen, path: '/wishlist' }
+    { label: "Home", icon: faHouse, path: "/" },
+    { label: "My Games", icon: faGamepad, path: "/my-games" },
+    { label: "Wishlist", icon: faPen, path: "/wishlist" }
   ];
+
+  function clearSearch() {
+    searchQuery = "";
+  }
 </script>
 
-<!--
-  The main navigation element.
-  It's fixed to the left side of the screen and spans the full height.
--->
 <nav>
-  <!--
-    App logo at the top of the nav.
-    Alt text is important for accessibility - screen readers will read this
-    description to users who can't see the image.
-  -->
-  <img src={logo} alt="Game Recommender logo" />
+  <div class="side-section">
+    <img src={logo} alt="Logo" class="nav-logo" />
+    <ul class="nav-links">
+      {#each navItems as item}
+        <li>
+          <Fa icon={item.icon} fw />
+          <span class="label">{item.label}</span>
+        </li>
+      {/each}
+    </ul>
+  </div>
 
-  <!--
-    Navigation menu list.
-    We use an unordered list (ul) because semantically, this is a list of links.
-  -->
-  <ul>
-    <!--
-      Loop through each navigation item and create a list item.
+  <div class="search-wrapper">
+    <div class="search-container">
+      <Fa icon={faMagnifyingGlass} class="search-icon" />
+      <input 
+        type="text" 
+        placeholder="Search games..." 
+        bind:value={searchQuery} 
+      />
+      {#if searchQuery.length > 0}
+        <button class="clear-btn" on:click={clearSearch} aria-label="Clear search">
+          <Fa icon={faXmark} />
+        </button>
+      {/if}
+    </div>
+  </div>
 
-      In Svelte, {#each} is used to loop through arrays.
-      The (item) after the array gives us a variable name to use in the loop.
-    -->
-    {#each navItems as item}
-      <li>
-        <!--
-          In a future enhancement, you would wrap this in a SvelteKit <a> tag
-          to make it clickable and navigate to the route:
-
-          <a href={item.path}>
-            <FontAwesomeIcon ... />
-            {item.label}
-          </a>
-
-          For now, we're keeping it simple without routing functionality.
-        -->
-
-        <!--
-          Display the icon for this menu item.
-          fw (fixedWidth) ensures all icons take up the same space, keeping alignment clean.
-        -->
-        <Fa icon={item.icon} class="font-awesome-icon" fw />
-
-        <!-- Display the label for this menu item -->
-        {item.label}
-      </li>
-    {/each}
-  </ul>
-
-  <!--
-    User avatar at the bottom of the nav.
-    This component handles displaying the user profile icon and name.
-  -->
-  <Avatar />
+  <div class="side-section right">
+    <Avatar />
+  </div>
 </nav>
 
-<!--
-  Component-specific styles using SCSS.
--->
 <style lang="scss">
-  /**
-   * Import our global color variables.
-   */
   @use '$lib/styles/variables';
 
-  /**
-   * Style the FontAwesome icons to be white.
-   * This is a global class that applies to all icons in this component.
-   */
-  :global(.font-awesome-icon) {
-    color: variables.$white-color;
-  }
-
-  /**
-   * Main navigation container.
-   *
-   * This is fixed to the left side of the screen and takes up 15% of the width.
-   * It uses flexbox to arrange its children (logo, menu, avatar) vertically.
-   */
   nav {
-    background-color: variables.$primary-color-accent;
-    padding-top: 4rem; /* Space at the top for breathing room */
     display: flex;
-    flex-direction: column; /* Stack children vertically */
-    align-items: center; /* Center children horizontally */
-    border-right: 1px solid variables.$secondary-color-accent; /* Separates nav from main content */
-    position: fixed; /* Stays in place when scrolling */
-    height: 100vh; /* Full viewport height */
-    width: 15%; /* Takes up 15% of screen width */
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    height: 60px;
+    width: 100vw;
+    background-color: variables.$primary-color-accent;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    border: none;
+    box-sizing: border-box;
   }
 
-  /**
-   * Style the navigation menu list.
-   *
-   * The 'margin-bottom: auto' pushes the avatar to the bottom of the nav,
-   * creating space between the menu and the avatar.
-   */
-  nav ul {
-    margin-top: 15%; /* Space between logo and menu */
-    margin-bottom: auto; /* Pushes avatar to bottom */
-    padding-left: 15%; /* Indent the menu items slightly */
+  .side-section {
+    display: flex;
+    align-items: center;
+    flex: 1; /* Occupies equal space as the right side to keep center true */
+    
+    &.right {
+      justify-content: flex-end;
+    }
   }
 
-  /**
-   * Style individual menu items.
-   *
-   * Each item displays its icon and label horizontally.
-   * Hover state provides visual feedback when the user mouses over an item.
-   */
+  .nav-logo {
+    height: 30px;
+    width: auto;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    list-style: none;
+    margin-left: 2rem;
+    padding: 0;
+  }
+
+  .search-wrapper {
+    display: flex;
+    justify-content: center;
+    flex: 2; /* Provides more space for the search bar in the center */
+  }
+
+  .search-container {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 5px 15px;
+    width: 100%;
+    max-width: 400px; 
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  input {
+    background: transparent;
+    border: none;
+    color: white;
+    margin-left: 10px;
+    outline: none;
+    width: 100%;
+    font-size: 0.85rem;
+    
+    &::placeholder { 
+      color: rgba(255, 255, 255, 0.5); 
+    }
+  }
+
+  .clear-btn {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+    &:hover { 
+      color: white; 
+    }
+  }
+
   li {
     display: flex;
-    gap: 1rem; /* Space between icon and label */
-    place-items: center center; /* Center icon and text vertically and horizontally */
-    font-size: 1.5em;
-    border-radius: 4px; /* Slightly rounded corners */
+    gap: 0.5rem;
+    align-items: center;
+    color: white;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    cursor: pointer;
 
-    /**
-     * Hover effect for menu items.
-     * Changes background color and cursor to indicate interactivity.
-     */
-    &:hover {
-      background-color: variables.$secondary-color;
-      cursor: pointer; /* Shows hand cursor to indicate it's clickable */
+    &:hover { 
+      opacity: 0.8; 
     }
+  }
+
+  :global(.search-icon) {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.8rem;
   }
 </style>
