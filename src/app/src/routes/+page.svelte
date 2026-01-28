@@ -2,7 +2,6 @@
   Home Page
 
   This is the main landing page of the Game Recommender application.
-  It displays the game cards with infinite scroll functionality.
 -->
 
 <script lang="ts">

@@ -1,61 +1,70 @@
 <!--
   Cards Container Component with Infinite Scroll
 
-  This is the main component that displays the list of game cards.
-  It handles:
+  This component displays the list of game cards and handles:
   - Fetching initial game data when the component loads
   - Implementing infinite scroll to load more games as you scroll down
   - Managing loading states and errors
   - Displaying the footer when all games are loaded
-
-  How infinite scroll works:
-  1. We listen to the window's scroll event
-  2. When the user scrolls near the bottom (within 200px), we fetch more games
-  3. New games are appended to the existing list
-  4. The process repeats until all games are loaded
 -->
 
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { games, loading, error, currentPage, hasMoreGames } from '$lib/stores/games';
   import { fetchGames } from '$lib/api/games';
+  import type { Game } from '$lib/types/game';
   import Card from './Card.svelte';
   import Footer from './Footer.svelte';
 
-  let isFetching = false;
+  // Local state using Svelte 5 runes
+  let games: Game[] = $state([]);
+  let loading = $state(true);
+  let error: string | null = $state(null);
+  let currentPage = $state(1);
+  let hasMoreGames = $state(true);
+  let isFetching = $state(false);
 
   async function loadInitialGames() {
     try {
-      $loading = true;
+      loading = true;
       const response = await fetchGames(1);
-      $games = response.data;
-      $error = null;
+      games = response.data;
+      error = null;
     } catch (err) {
-      $error = err instanceof Error ? err.message : 'An unknown error occurred';
+      error = err instanceof Error ? err.message : 'An unknown error occurred';
+      console.error('Error loading initial games:', err);
     } finally {
-      $loading = false;
+      loading = false;
     }
   }
 
   async function loadMoreGames() {
-    if (isFetching || $loading || !$hasMoreGames) return;
+    if (isFetching || loading || !hasMoreGames) {
+      return;
+    }
 
     try {
       isFetching = true;
-      $loading = true;
-      $currentPage += 1;
-      const response = await fetchGames($currentPage);
+      loading = true;
+      currentPage += 1;
+
+      const response = await fetchGames(currentPage);
+
       if (response.data && response.data.length > 0) {
-        $games = [...$games, ...response.data];
-        if (response.data.length < 10) $hasMoreGames = false;
+        games = [...games, ...response.data];
+
+        if (response.data.length < 10) {
+          hasMoreGames = false;
+        }
       } else {
-        $hasMoreGames = false;
+        hasMoreGames = false;
       }
-      $error = null;
+
+      error = null;
     } catch (err) {
-      $error = err instanceof Error ? err.message : 'An unknown error occurred';
+      error = err instanceof Error ? err.message : 'An unknown error occurred';
+      console.error('Error loading more games:', err);
     } finally {
-      $loading = false;
+      loading = false;
       isFetching = false;
     }
   }
@@ -66,7 +75,7 @@
     const clientHeight = window.innerHeight;
     const distanceFromBottom = scrollHeight - (scrollTop + clientHeight);
 
-    if (distanceFromBottom < 200 && $hasMoreGames && !isFetching && !$loading) {
+    if (distanceFromBottom < 200 && hasMoreGames && !isFetching && !loading) {
       loadMoreGames();
     }
   }
@@ -76,23 +85,23 @@
   });
 </script>
 
-<svelte:window on:scroll={handleScroll} />
+<svelte:window onscroll={handleScroll} />
 
 <section class="cards">
-  {#each $games as game (game.id)}
+  {#each games as game (game.id)}
     <Card {game} />
   {/each}
 
-  {#if $loading}
+  {#if loading}
     <p>Loading...</p>
   {/if}
 
-  {#if !$hasMoreGames && !$loading}
+  {#if !hasMoreGames && !loading}
     <Footer />
   {/if}
 
-  {#if $error}
-    <p class="error">Error: {$error}</p>
+  {#if error}
+    <p class="error">Error: {error}</p>
   {/if}
 </section>
 

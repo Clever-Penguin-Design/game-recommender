@@ -9,13 +9,16 @@
   import '../app.scss';
   import Nav from '$lib/components/Nav.svelte';
   import FilterBar from '$lib/components/FilterBar.svelte'; // Import the new filter bar
+<<<<<<< HEAD
   import favicon from '$lib/assets/favicon.svg';
+=======
+>>>>>>> 14924a13a87b61b9c81dac8a1ae23676a18f5292
 
   let { children } = $props();
 </script>
 
 <svelte:head>
-  <link rel="icon" href={favicon} />
+  <link rel="icon" href="/favicon.svg" />
 </svelte:head>
 
 <div class="app-container">

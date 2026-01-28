@@ -15,9 +15,9 @@
  */
 export interface Game {
   /**
-   * Unique identifier for the game (from the database)
+   * Unique identifier for the game (UUID string)
    */
-  id: number;
+  id: string;
 
   /**
    * The name of the game (e.g., "Satisfactory", "Minecraft")
@@ -38,6 +38,11 @@ export interface Game {
    * The review score for the game (typically 1-10)
    */
   review_score: number;
+
+  /**
+   * URL to the game's cover image
+   */
+  cover_url?: string;
 
   /**
    * Optional: Information about supported platforms

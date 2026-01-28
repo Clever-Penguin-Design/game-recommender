@@ -2,9 +2,8 @@
   import Fa from "svelte-fa";
   import { faHouse, faGamepad, faPen, faMagnifyingGlass, faXmark } from "@fortawesome/free-solid-svg-icons";
   import Avatar from "./Avatar.svelte";
-  import logo from "$lib/assets/img/logo.jpg";
 
-  let searchQuery = ""; 
+  let searchQuery = $state("");
 
   const navItems = [
     { label: "Home", icon: faHouse, path: "/" },
@@ -18,13 +17,13 @@
 </script>
 
 <nav>
-  <div class="side-section">
-    <img src={logo} alt="Logo" class="nav-logo" />
+  <div class="side-section left">
+    <img src="/img/logo.jpg" alt="Game Recommender logo" class="nav-logo" />
     <ul class="nav-links">
-      {#each navItems as item}
+      {#each navItems as item (item.path)}
         <li>
-          <Fa icon={item.icon} fw />
-          <span class="label">{item.label}</span>
+          <Fa icon={item.icon} class="font-awesome-icon" fw />
+          {item.label}
         </li>
       {/each}
     </ul>
@@ -33,13 +32,13 @@
   <div class="search-wrapper">
     <div class="search-container">
       <Fa icon={faMagnifyingGlass} class="search-icon" />
-      <input 
-        type="text" 
-        placeholder="Search games..." 
-        bind:value={searchQuery} 
+      <input
+        type="text"
+        placeholder="Search games..."
+        bind:value={searchQuery}
       />
       {#if searchQuery.length > 0}
-        <button class="clear-btn" on:click={clearSearch} aria-label="Clear search">
+        <button class="clear-btn" onclick={clearSearch} aria-label="Clear search">
           <Fa icon={faXmark} />
         </button>
       {/if}
@@ -54,28 +53,37 @@
 <style lang="scss">
   @use '$lib/styles/variables';
 
+  :global(.font-awesome-icon) {
+    color: variables.$white;
+  }
+
   nav {
+    background-color: variables.$primary-accent;
+    padding: 0 2rem;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 0 2rem;
-    height: 60px;
-    width: 100vw;
-    background-color: variables.$primary-color-accent;
+    border-bottom: 1px solid variables.$secondary-accent;
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1000;
-    border: none;
+    height: 60px;
+    width: 100vw;
+    z-index: 100;
     box-sizing: border-box;
   }
 
   .side-section {
     display: flex;
     align-items: center;
-    flex: 1; /* Occupies equal space as the right side to keep center true */
-    
+    flex: 1;
+
+    &.left {
+      justify-content: flex-start;
+      gap: 1.5rem;
+    }
+
     &.right {
       justify-content: flex-end;
     }
@@ -91,14 +99,14 @@
     flex-direction: row;
     gap: 1.5rem;
     list-style: none;
-    margin-left: 2rem;
+    margin: 0;
     padding: 0;
   }
 
   .search-wrapper {
     display: flex;
     justify-content: center;
-    flex: 2; /* Provides more space for the search bar in the center */
+    flex: 2;
   }
 
   .search-container {
@@ -108,7 +116,7 @@
     border-radius: 20px;
     padding: 5px 15px;
     width: 100%;
-    max-width: 400px; 
+    max-width: 400px;
     border: 1px solid rgba(255, 255, 255, 0.2);
   }
 
@@ -120,9 +128,9 @@
     outline: none;
     width: 100%;
     font-size: 0.85rem;
-    
-    &::placeholder { 
-      color: rgba(255, 255, 255, 0.5); 
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.5);
     }
   }
 
@@ -134,8 +142,8 @@
     display: flex;
     align-items: center;
 
-    &:hover { 
-      color: white; 
+    &:hover {
+      color: white;
     }
   }
 
@@ -148,8 +156,8 @@
     white-space: nowrap;
     cursor: pointer;
 
-    &:hover { 
-      opacity: 0.8; 
+    &:hover {
+      opacity: 0.8;
     }
   }
 

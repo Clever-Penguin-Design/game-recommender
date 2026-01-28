@@ -13,9 +13,9 @@
 # Or use docker-compose.yml from the root directory (recommended):
 #   docker compose up
 
-# Use Python 3.11 slim image as base
+# Use Python 3.12 slim image as base
 # Slim images are smaller and have fewer dependencies
-FROM python:3.11-slim
+FROM python:3.12-slim
 
 # Set working directory to /app
 # All subsequent commands will run from this directory
@@ -29,7 +29,7 @@ COPY pyproject.toml ./
 # Install uv (fast Python package manager)
 # Then install all project dependencies
 RUN pip install uv && \
-    uv pip install --system -r pyproject.toml
+  uv pip install --system -r pyproject.toml
 
 # Copy the rest of the application code
 COPY . .
