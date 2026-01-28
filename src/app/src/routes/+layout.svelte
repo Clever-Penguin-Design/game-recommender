@@ -9,7 +9,6 @@
   import '../app.scss';
   import Nav from '$lib/components/Nav.svelte';
   import FilterBar from '$lib/components/FilterBar.svelte'; // Import the new filter bar
-  import favicon from '$lib/assets/favicon.svg';
 
   let { children } = $props();
 </script>
@@ -18,7 +17,7 @@
   <link rel="icon" href="/favicon.svg" />
 </svelte:head>
 
-<div>
+<div class="app-container">
   <Nav />
   
   <FilterBar />

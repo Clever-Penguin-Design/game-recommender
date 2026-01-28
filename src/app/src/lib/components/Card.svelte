@@ -5,17 +5,24 @@
   -->
 
 <script lang="ts">
+  /**
+   * Import FontAwesome icons for the card UI.
+   */
   import Fa from 'svelte-fa';
   import { faPaperPlane, faUser } from '@fortawesome/free-regular-svg-icons';
   import { faPlus, faCircleInfo, faChartSimple } from '@fortawesome/free-solid-svg-icons';
   import { faSteam } from '@fortawesome/free-brands-svg-icons';
 
   import type { Game } from '$lib/types/game';
-  
+
   let { game }: { game: Game } = $props();
 
   </script>
 
+<!--
+  Main card container.
+  This holds the game image and all the game information.
+-->
 <div class="card">
   <!--
     Game cover image.
@@ -23,10 +30,17 @@
   -->
   <img src={game.cover_url} alt="Cover art for {game.title}" />
 
+  <!--
+    Content section holds all the text and icons.
+    It's organized into sections: header, info, description, platforms.
+  -->
   <div class="content">
+    <!--
+      Header section with game title and action icons.
+    -->
     <header>
       <h2>
-        {game.title}      
+        {game.title}
       </h2>
 
       <!--
@@ -34,17 +48,38 @@
         These are placeholders - they would need click handlers to be functional.
       -->
       <ul class="card-header-icons">
-        <li><Fa icon={faPaperPlane} style="color: #fafafa" /></li>
-        <li><Fa icon={faPlus} /></li>
-        <li><Fa icon={faCircleInfo} /></li>
+        <li>
+          <!-- Share icon - could open a share dialog -->
+          <Fa icon={faPaperPlane} style="color: #fafafa" />
+        </li>
+        <li>
+          <!-- Add to wishlist icon - could add game to user's wishlist -->
+          <Fa icon={faPlus} />
+        </li>
+        <li>
+          <!-- More info icon - could open a detailed game page -->
+          <Fa icon={faCircleInfo} />
+        </li>
       </ul>
     </header>
 
+    <!--
+      Info section with player count and review score.
+    -->
     <div class="info">
+      <!--
+        Number of players supported.
+        Currently hardcoded - should come from game.multiplayer data.
+      -->
       <div class="number-players">
         <Fa icon={faUser} />
         <p>1-4 Players</p>
       </div>
+
+      <!--
+        Review score.
+        Currently hardcoded - should display game.review_score.
+      -->
       <div class="review-score">
         <Fa icon={faChartSimple} />
         <p>Review Score {game.review_score || 'N/A'}</p>
@@ -70,9 +105,28 @@
   </div>
 </div>
 
+<!--
+  Component-specific styles using SCSS.
+-->
 <style lang="scss">
+  /**
+   * Import our global color variables.
+   */
   @use '$lib/styles/variables';
 
+  /**
+   * Remove default borders from content header.
+   * Also prevents horizontal overflow.
+   */
+  .content > header {
+    border: none;
+    overflow-x: hidden;
+  }
+
+  /**
+   * Main card container.
+   * Displays game image on the left and content on the right.
+   */
   .card {
     background-color: variables.$secondary;
     height: 30%;
@@ -114,13 +168,28 @@
     display: flex;
     justify-content: space-between; /* Push title left and icons right */
     width: 100%;
+    align-items: center; /* Vertically center */
+    border: none;
+  }
+
+  /**
+   * Game title styling.
+   */
+  .content header h2 {
+    font-size: 1.8rem;
+    border: none;
+    padding-left: 1rem;
+  }
+
+  /**
+   * Action icons in the header.
+   * Arranged horizontally with small gaps between them.
+   */
+  .card-header-icons {
     display: flex;
-    flex-direction: row;
-    border-radius: 12px;
-    overflow: hidden;
-    margin-bottom: 2rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    min-height: 250px;
+    gap: 8px; /* Space between icons */
+    padding-right: 24px;
+    border: none;
   }
 
   /**
@@ -131,33 +200,16 @@
     background-color: variables.$secondary;
     border: none;
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    padding: 2rem;
+    justify-content: end; /* Align to right */
+    padding-right: 16px;
+    padding-bottom: 16px;
+    font-size: 1.3rem;
   }
 
-  header {
-    display: flex;
-    align-items: center;
-    width: 100%;
-
-    h2 {
-      font-size: 1.6rem;
-      margin: 0;
-      color: white;
-    }
-
-    .card-header-icons {
-      display: flex;
-      gap: 15px;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      /* Pushes icons to the far right */
-      margin-left: auto; 
-    }
-  }
-
+  /**
+   * Info section containing player count and review score.
+   * Arranged horizontally.
+   */
   .info {
     display: flex;
     justify-content: start; /* Align to left */
