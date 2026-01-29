@@ -1,0 +1,10 @@
+# pack-refs with: peeled fully-peeled sorted 
+e4de0a2f2db980f624dc412702e678b7653bb8a7 refs/remotes/origin/47-issue-standup-testing-framework-for-ui
+99233b0ced4b3b1c148a01efa83d998dd73aa6e0 refs/remotes/origin/59-replace-django-with-fastapi
+c577c05c4b9db37fbe3468f2885923b6c3588671 refs/remotes/origin/65-enable-igdb-service
+55441e451950091f32b64c2726e67c9e9ce4dff3 refs/remotes/origin/hotfix-add-lib-directory
+ef2aac19de4f51dae17a846dd5c88c1c1dd7b1ec refs/remotes/origin/issue-10-render-alphabetical-list-of-video-games
+28d77830adc903f3b884f5781a05b769ce520fa1 refs/remotes/origin/issue-39-migrate-next-to-react
+0f2f194377cd2d7842d47ac9f9513103c59dc8cb refs/remotes/origin/issue-45-dockerize-react-ui
+1531e10cc1c866aeca13ac1e72852241c92a63b0 refs/remotes/origin/issue-57-conditionally-render-footer
+334a28cb37e6e3f22f14a191c18347b49b10996f refs/remotes/origin/main
