@@ -71,7 +71,12 @@ docker compose down
 ### Local Development Setup
 
 For active development with hot-reload, you can run the frontend and backend locally:
+#### Environment Variables
+```env
+RAWG_API_KEY=da4529d7cfb1472dbe6be1f944ad6c13
 
+DATABASE_URL=postgresql://postgres:postgres@db:5432/game_recommender
+```
 #### 1. Start the Database
 
 First, start just the PostgreSQL database with Docker:
@@ -81,7 +86,6 @@ docker compose up db -d
 ```
 
 #### 2. Setup and Run Backend
-
 ```bash
 # Navigate to the API directory
 cd src/api
