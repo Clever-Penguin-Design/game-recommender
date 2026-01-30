@@ -73,7 +73,7 @@ docker compose down
 For active development with hot-reload, you can run the frontend and backend locally:
 #### Environment Variables
 ```env
-RAWG_API_KEY=da4529d7cfb1472dbe6be1f944ad6c13
+RAWG_API_KEY=my-api-key-placeholder
 
 DATABASE_URL=postgresql://postgres:postgres@db:5432/game_recommender
 ```
