@@ -53,38 +53,31 @@
   The "lang='scss'" tells Svelte to process this as SCSS instead of plain CSS.
 -->
 <style lang="scss">
-  /**
-   * Import our global color variables so we can use them here.
-   * The '@use' syntax is the modern SCSS way to import modules.
-   */
   @use '$lib/styles/variables';
 
-  /**
-   * Style the main avatar container.
-   * This creates a horizontal layout with the icon and username.
-   */
   .avatar {
-    display: flex; /* Arrange children horizontally */
-    gap: 4%; /* Space between icon and username */
-    align-items: center; /* Vertically center icon and text */
-    justify-content: center; /* Horizontally center content */
-    background-color: variables.$primary;
-    border-top: 1px solid black; /* Separates from nav items above */
-    width: 100%;
-    height: 10%; /* Takes up 10% of the nav bar height */
+    display: flex; 
+    gap: 10px;          /* Changed from 4% to a fixed gap [cite: 16] */
+    align-items: center;
+    justify-content: flex-end; /* Align content to the right of its container [cite: 18] */
+    background-color: transparent; /* Remove the solid block background  */
+    border-top: none;   /* REMOVES THE BLACK LINE  */
+    width: auto;        /* Stop it from stretching across the whole bar [cite: 20] */
+    height: 100%;       /* Match the nav bar height [cite: 20] */
   }
 
-  /**
-   * Style the circular icon container.
-   * The 50% border-radius creates a perfect circle.
-   */
   .avatar-icon {
     display: flex;
-    justify-content: center; /* Center the icon horizontally */
-    align-items: center; /* Center the icon vertically */
+    justify-content: center;
+    align-items: center;
     background-color: white;
-    height: 2em; /* Fixed size for the circle */
-    width: 2em;
-    border-radius: 50%; /* Makes it circular */
+    height: 2.2em;      /* Slightly larger for the top bar [cite: 24] */
+    width: 2.2em;
+    border-radius: 50%;
+  }
+  
+  h3 {
+    font-size: 0.9rem;  /* Ensure the username matches the small nav text */
+    margin: 0;
   }
 </style>

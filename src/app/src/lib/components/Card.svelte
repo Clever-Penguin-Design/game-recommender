@@ -14,7 +14,7 @@
   import { faSteam } from '@fortawesome/free-brands-svg-icons';
 
   import type { Game } from '$lib/types/game';
-  
+
   let { game }: { game: Game } = $props();
 
   </script>
@@ -40,7 +40,7 @@
     -->
     <header>
       <h2>
-        {game.title}      
+        {game.title}
       </h2>
 
       <!--

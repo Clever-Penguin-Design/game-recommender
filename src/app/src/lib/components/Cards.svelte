@@ -105,28 +105,21 @@
   {/if}
 </section>
 
-<!--
-  Component-specific styles.
--->
 <style lang="scss">
   @use '$lib/styles/variables';
 
   .cards {
-    margin-left: auto;
+    margin-left: auto; 
     width: 85%;
-
-    /* Remove dots if Card.svelte uses <li> tags */
     display: flex;
     flex-direction: column;
-    list-style: none;
+    list-style: none; 
   }
 
-  /* Forces any list items inside the container to hide their dots */
   :global(.cards li) {
     list-style-type: none !important;
   }
 
-  /* Catches any default browser padding that pushes icons to the right */
   :global(.cards ul) {
     padding: 0;
     margin: 0;
