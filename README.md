@@ -86,6 +86,7 @@ docker compose up db -d
 ```
 
 #### 2. Setup and Run Backend
+
 ```bash
 # Navigate to the API directory
 cd src/api
