@@ -17,7 +17,7 @@
   <link rel="icon" href="/favicon.svg" />
 </svelte:head>
 
-<div class="app-container">
+<div>
   <Nav />
   
   <FilterBar />
@@ -28,11 +28,6 @@
 </div>
 
 <style>
-  .app-container {
-    display: block; 
-    width: 100%;
-  }
-
   main {
     margin-top: 130px; /* Accounts for both Nav and FilterBar height */
     padding: 20px;

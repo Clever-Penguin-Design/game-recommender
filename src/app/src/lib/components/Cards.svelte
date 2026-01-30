@@ -106,6 +106,8 @@
 </section>
 
 <style lang="scss">
+  @use '$lib/styles/variables';
+
   .cards {
     margin-left: auto; 
     width: 85%;
@@ -125,7 +127,7 @@
   }
 
   .error {
-    color: #ff6b6b;
+    color: variables.$error;
     padding: 1rem;
     text-align: center;
     font-weight: bold;
