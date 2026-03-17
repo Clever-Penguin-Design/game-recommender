@@ -107,13 +107,16 @@
 
 <style lang="scss">
   @use '$lib/styles/variables';
-
-  .cards {
+.cards {
+  
+    margin-top: 15px;
+    padding-top: 0 !important;
+    
     margin-left: auto; 
     width: 85%;
     display: flex;
     flex-direction: column;
-    list-style: none; 
+    list-style: none;
   }
 
   :global(.cards li) {

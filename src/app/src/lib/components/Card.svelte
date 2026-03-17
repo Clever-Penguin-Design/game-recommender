@@ -123,18 +123,18 @@
     overflow-x: hidden;
   }
 
-  /**
+/**
    * Main card container.
-   * Displays game image on the left and content on the right.
    */
   .card {
     background-color: variables.$secondary;
     height: 30%;
     width: 90%;
-    display: flex; /* Arrange image and content side by side */
+    display: flex;
     justify-content: left;
     border: none;
-    margin: 20px 30px; /* Space between cards */
+    
+    margin: 0 30px 20px 30px; 
   }
 
   /**

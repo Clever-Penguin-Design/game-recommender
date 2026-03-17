@@ -29,14 +29,15 @@
 
 <style>
   main {
-    margin-top: 130px; /* Accounts for both Nav and FilterBar height */
-    padding: 20px;
-    
-    /* Center the content horizontally */
+
+    margin-top: 15px; 
+
+    padding: 0 20px 20px 20px; 
+
     display: flex;
     flex-direction: column;
     align-items: center; 
     width: 100%;
-    box-sizing: border-box;
+    box-sizing: border-box; 
   }
 </style>
